@@ -6,8 +6,8 @@ My visualization of the Chaos Game
 
 ## Contents
 
-- [Branches](#branches)
 - [Options](#options)
+- [Branches](#branches)
 - [License](#license)
 
 ## Options

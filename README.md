@@ -16,9 +16,12 @@ My visualization of the Chaos Game
   - [Initialization.Points](#initializationpoints)
   - [Initialization.Random](#initializationrandom)
   - [Initialization.Generation](#initializationgeneration)
+- Appearance
+  - [Appearance.Color](#appearancecolor)
+  - [Appearance.Draw_Points](#appearancedraw_points)
 - Manipulate
   - [Manipulate.Lerp](#manipulatelerp)
-  - [Manipulate.Color](#manipulatecolor)
+  - [Manipulate.Same_Points](#manipulatesame_points)
 
 ### Initialization.Points
 
@@ -26,7 +29,7 @@ My visualization of the Chaos Game
 |:------:|:-------:|:---:|:-----:|
 | Number | `3`     | `3` | `100` |
 
-The number of points to use
+The number of edge points to use.
 
 ### Initialization.Random
 
@@ -34,8 +37,8 @@ The number of points to use
 |:-------:|:-------:|
 | Boolean | `false` |
 
-If the points should be randomly positioned in the window.
-If set to false the points are equally spaced around the center of the screen
+If the edge points should be randomly positioned in the window.
+If set to false the edge points are equally spaced around the center of the screen.
 
 ### Initialization.Generation
 
@@ -43,7 +46,23 @@ If set to false the points are equally spaced around the center of the screen
 |:------:|:-------:|:---:|
 | Number | `1000`  | `1` |
 
-The number of points to place per draw call
+The number of edge points to place per draw call
+
+### Appearance.Color
+
+| Type    | Default |
+|:-------:|:-------:|
+| Boolean | `true`  |
+
+Draw the chaos points with color based off the starting point index.
+
+### Appearance.Draw_Points
+
+| Type    | Default |
+|:-------:|:-------:|
+| Boolean | `true`  |
+
+Draw the edge points.
 
 ### Manipulate.Lerp
 
@@ -51,16 +70,16 @@ The number of points to place per draw call
 |:------:|:-------:|:---:|:---:|
 | Number | `0.5`   | `0` | `1` |
 
-The distance between the current point and the next point.
+The distance between the current chaos point and the next edge point.
 `0.5` is half way.
 
-### Manipulate.Color
+### Manipulate.Same_Points
 
 | Type    | Default |
 |:-------:|:-------:|
-| Boolean | `true` |
+| Boolean | `true`  |
 
-Draw the points with color based off the starting point index.
+Allows the next edge point to be the same as the last edge point.
 
 ## Branches
 

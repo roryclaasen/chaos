@@ -19,9 +19,13 @@ const options = {
 		random: false,
 		generation: 1000
 	},
+	appearance: {
+		color: true,
+		drawPoints: true
+	},
 	manipulate: {
 		lerp: 0.5,
-		color: true
+		samePoints: true
 	}
 };
 
@@ -40,9 +44,13 @@ init.add(options.initialization, 'points', 1, 100, 1).onChange((v) => regenerate
 init.add(options.initialization, 'random').onChange((v) => regenerate());
 init.add(options.initialization, 'generation', 1).onChange((v) => regenerate());
 
+const appearance = gui.addFolder('Appearance');
+appearance.add(options.appearance, 'color').onChange((v) => regenerate());
+appearance.add(options.appearance, 'drawPoints').onChange((v) => regenerate());
+
 const manipulate = gui.addFolder('Manipulate');
 manipulate.add(options.manipulate, 'lerp', 0, 1, 0.01).onChange((v) => regenerate());
-manipulate.add(options.manipulate, 'color').onChange((v) => regenerate());
+manipulate.add(options.manipulate, 'samePoints').onChange((v) => regenerate());
 
 /**
  * Wrapper function for sketch

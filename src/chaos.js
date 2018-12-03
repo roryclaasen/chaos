@@ -69,11 +69,13 @@ export default class Chaos {
 	 * @memberof Chaos
 	 */
 	drawBase(sketch) {
-		sketch.stroke(255);
-		sketch.strokeWeight(4);
+		if (this.options.appearance.drawPoints) {
+			sketch.stroke(255);
+			sketch.strokeWeight(4);
 
-		for (const point of this.points) {
-			sketch.point(point.x, point.y);
+			for (const point of this.points) {
+				sketch.point(point.x, point.y);
+			}
 		}
 	}
 
@@ -85,23 +87,25 @@ export default class Chaos {
 		sketch.stroke(255);
 		sketch.strokeWeight(1);
 
-		if (this.options.manipulate.color) {
+		if (this.options.appearance.color) {
 			sketch.colorMode(sketch.HSB, this.points.length);
 		}
 
 		for (let i = 0; i < this.options.initialization.generation; i += 1) {
 			const nextIndex = Math.floor(Math.random() * this.points.length);
-			const next = this.points[nextIndex];
+			if (this.options.manipulate.samePoints || nextIndex !== this.previous) {
+				const next = this.points[nextIndex];
 
-			this.current.x = sketch.lerp(this.current.x, next.x, this.options.manipulate.lerp);
-			this.current.y = sketch.lerp(this.current.y, next.y, this.options.manipulate.lerp);
+				this.current.x = sketch.lerp(this.current.x, next.x, this.options.manipulate.lerp);
+				this.current.y = sketch.lerp(this.current.y, next.y, this.options.manipulate.lerp);
 
-			if (this.options.manipulate.color) {
-				sketch.stroke(nextIndex, this.points.length, this.points.length);
+				if (this.options.appearance.color) {
+					sketch.stroke(nextIndex, this.points.length, this.points.length);
+				}
+
+				sketch.point(this.current.x, this.current.y);
 			}
-
-			sketch.point(this.current.x, this.current.y);
-			this.previous = next;
+			this.previous = nextIndex;
 		}
 		sketch.colorMode(sketch.RGB);
 	}
